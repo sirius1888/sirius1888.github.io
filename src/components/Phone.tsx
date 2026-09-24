@@ -39,7 +39,6 @@ export function VinteoScene({
     [ended, setEnded] = useState(false);
   const [messages, setMessages] = useState<string[]>([]),
     [draft, setDraft] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
   const chatRef = useRef<HTMLDivElement>(null);
   const viewer = demo === 'viewer';
   useEffect(() => {
@@ -51,9 +50,6 @@ export function VinteoScene({
       return () => clearTimeout(timeout);
     }
   }, [demo, onDemo]);
-  useEffect(() => {
-    if (demo === 'chat') inputRef.current?.focus({ preventScroll: true });
-  }, [demo]);
   useEffect(() => {
     if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight;
   }, [messages]);
@@ -243,7 +239,6 @@ export function VinteoScene({
               </div>
               <form onSubmit={send}>
                 <input
-                  ref={inputRef}
                   value={draft}
                   onChange={(event) => setDraft(event.target.value)}
                   maxLength={180}

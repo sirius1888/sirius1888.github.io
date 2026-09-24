@@ -78,6 +78,40 @@ describe('Portfolio v2 visitor journeys', () => {
     await user.keyboard('{Escape}');
     expect(screen.queryByRole('textbox', { name: 'Chat message' })).toBeNull();
   });
+  it('brings a mobile scenario into view without focusing the chat input', async () => {
+    vi.mocked(window.matchMedia).mockImplementation((query) => ({
+      matches: query === '(max-width: 800px)',
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }));
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: 'Conference chat' }));
+    const stage = screen.getByRole('region', { name: 'Interactive conference demo' });
+    expect(document.activeElement).toBe(stage);
+    expect(document.activeElement).not.toBe(screen.getByRole('textbox', { name: 'Chat message' }));
+    expect(stage.scrollIntoView).toHaveBeenCalledWith({ block: 'start' });
+    await user.type(screen.getByRole('textbox', { name: 'Chat message' }), 'Mobile demo');
+    await user.click(screen.getByRole('button', { name: 'Send message' }));
+    expect(screen.getByText('Mobile demo')).toBeTruthy();
+    await user.click(screen.getByRole('button', { name: 'Viewer mode' }));
+    expect(document.activeElement).toBe(stage);
+    expect(screen.queryByRole('textbox', { name: 'Chat message' })).toBeNull();
+  });
+  it('keeps desktop focus on the selected scenario and does not scroll the page', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const button = screen.getByRole('button', { name: 'Conference chat' });
+    await user.click(button);
+    expect(document.activeElement).toBe(button);
+    expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
+    expect(screen.getByRole('textbox', { name: 'Chat message' })).toBeTruthy();
+  });
   it('restricts viewer capture, returns from PiP and can rejoin after hanging up', async () => {
     const user = userEvent.setup();
     render(<App />);

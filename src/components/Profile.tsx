@@ -164,7 +164,6 @@ export function ProfileHero({ lang }: { lang: Language }) {
           {t('Sergei', 'Сергей')}
           <br />
           <span>{t('Karukes', 'Карукес')}</span>
-          <span className="name-period">.</span>
         </h1>
         <p className="profile-bio">
           {t(
@@ -233,7 +232,7 @@ export function ProfileHero({ lang }: { lang: Language }) {
         </div>
       </div>
       <div className="profile-bottom">
-        <span>{t('APPS I HAVE WORKED ON', 'ПРИЛОЖЕНИЯ, НАД КОТОРЫМИ РАБОТАЛ')}</span>
+        <span>{t('Apps I’ve worked on', 'Мои проекты')}</span>
         <div>
           <a href="#vinteo-mobile">
             <img src="./images/vinteo.jpg" alt="" />
@@ -254,13 +253,6 @@ export function ProfileHero({ lang }: { lang: Language }) {
             {t('My O!', 'Мой О!')}
           </a>
         </div>
-        <a
-          href="#vinteo"
-          className="profile-scroll"
-          aria-label={t('Continue to experience', 'Перейти к опыту')}
-        >
-          <ArrowDown size={18} />
-        </a>
       </div>
     </section>
   );

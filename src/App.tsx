@@ -1,5 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
+  ArrowDown,
+  ArrowUp,
   ArrowUpRight,
   Check,
   ClipboardList,
@@ -10,6 +12,7 @@ import {
   MessageCircle,
   Moon,
   PictureInPicture2,
+  Play,
   Send,
   Sun,
   TestTube2,
@@ -65,6 +68,7 @@ export default function App() {
   const [preferencesLoaded, setPreferencesLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [demo, setDemo] = useState<Demo>('call');
+  const demoStage = useRef<HTMLDivElement>(null);
   const [adConfig, setAdConfig] = useState<AdConfig>(initialAdConfig);
   const [adEvents, setAdEvents] = useState<string[]>([]);
   const [adResetVersion, setAdResetVersion] = useState(0);
@@ -86,7 +90,7 @@ export default function App() {
         : 'Сергей Карукес — Senior / Lead React Native Engineer';
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', theme === 'dark' ? '#0d1016' : '#f5f6f8');
+      ?.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#fafafa');
     try {
       localStorage.setItem('sk-language', lang);
       localStorage.setItem('sk-theme', theme);
@@ -125,6 +129,14 @@ export default function App() {
     ['muse-group', 'Muse Group'],
     ['experience', t('Earlier work', 'Ранний опыт')],
   ];
+  function selectScenario(next: Demo) {
+    setDemo(demo === next ? 'call' : next);
+    if (window.matchMedia('(max-width: 800px)').matches) {
+      // Focus the demo region, never its input: opening a scene must not open the keyboard.
+      demoStage.current?.focus({ preventScroll: true });
+      demoStage.current?.scrollIntoView({ block: 'start' });
+    }
+  }
   return (
     <>
       <a className="skip-link" href="#main">
@@ -136,7 +148,7 @@ export default function App() {
           href="#home"
           aria-label={t('Sergei Karukes, home', 'Сергей Карукес, начало')}
         >
-          sk<span>↗</span>
+          sk
         </a>
         <nav aria-label={t('Main navigation', 'Основная навигация')}>
           {navigation.map(([id, label]) => (
@@ -196,12 +208,12 @@ export default function App() {
           {navigation.map(([id, label]) => (
             <a href={`#${id}`} key={id} onClick={() => setMenuOpen(false)}>
               {label}
-              <ArrowUpRight size={16} />
+              <ArrowDown size={16} />
             </a>
           ))}
           <a href="#contact" onClick={() => setMenuOpen(false)}>
             {t('Contact', 'Контакты')}
-            <ArrowUpRight size={16} />
+            <ArrowDown size={16} />
           </a>
         </nav>
       </header>
@@ -224,9 +236,7 @@ export default function App() {
               <span className="employer-brand vinteo-brand">
                 <img src="./images/vinteo.jpg" alt="" />
               </span>
-              <h2 id="vinteo-heading">
-                Vinteo<span>.</span>
-              </h2>
+              <h2 id="vinteo-heading">Vinteo</h2>
             </div>
             <div className="employer-position">
               <strong>Team Lead React Native Engineer</strong>
@@ -238,11 +248,7 @@ export default function App() {
           <div className="leadership-layout">
             <div className="leadership-intro">
               <span className="case-kicker">{t('MY RESPONSIBILITIES', 'МОИ ЗАДАЧИ')}</span>
-              <h3>
-                {t('Development and', 'Разработка и')}
-                <br />
-                <span>{t('team leadership', 'руководство командой')}</span>
-              </h3>
+              <h3>{t('Development and team leadership', 'Разработка и руководство командой')}</h3>
               <p>
                 {t(
                   'I develop Vinteo Mobile and coordinate development, testing and planning with the team. I introduced daily meetings, demos, Git conventions, documentation and testing practices.',
@@ -314,11 +320,7 @@ export default function App() {
               <span className="case-kicker">
                 {t('PRODUCT / VINTEO MOBILE', 'ПРОДУКТ / VINTEO MOBILE')}
               </span>
-              <h3>
-                {t('Video calls', 'Видеосвязь')}
-                <br />
-                <span>{t('on iOS & Android', 'на iOS и Android')}</span>
-              </h3>
+              <h3>{t('Video calls on iOS & Android', 'Видеосвязь на iOS и Android')}</h3>
               <p>
                 {t(
                   'Conference chats, native iOS Picture in Picture, viewer mode and reconnection. My work also includes refactoring call logic and components.',
@@ -331,8 +333,15 @@ export default function App() {
                 <span>WebRTC</span>
                 <span>iOS / Android</span>
               </div>
+              <p className="demo-instruction">
+                {t(
+                  'Choose a feature to try in the demo.',
+                  'Выберите функцию, чтобы посмотреть её в демо.',
+                )}
+              </p>
               <div
                 className="scenario-list"
+                id="conference-scenarios"
                 role="group"
                 aria-label={t('Conference demo scenarios', 'Сценарии демо конференции')}
               >
@@ -343,7 +352,8 @@ export default function App() {
                       key={item.id}
                       aria-pressed={demo === item.id}
                       aria-label={item.title[lang]}
-                      onClick={() => setDemo(demo === item.id ? 'call' : item.id)}
+                      aria-controls="conference-demo"
+                      onClick={() => selectScenario(item.id)}
                     >
                       <span className="scenario-icon">
                         <Icon size={20} />
@@ -352,7 +362,11 @@ export default function App() {
                         <strong>{item.title[lang]}</strong>
                         <small>{item.description[lang]}</small>
                       </span>
-                      <ArrowUpRight size={16} />
+                      {demo === item.id ? (
+                        <Check size={18} aria-hidden="true" />
+                      ) : (
+                        <Play size={16} aria-hidden="true" />
+                      )}
                     </button>
                   );
                 })}
@@ -362,7 +376,14 @@ export default function App() {
                 <ArrowUpRight size={14} />
               </a>
             </div>
-            <div className="vinteo-phone-stage">
+            <div
+              className="vinteo-phone-stage"
+              id="conference-demo"
+              ref={demoStage}
+              tabIndex={-1}
+              role="region"
+              aria-label={t('Interactive conference demo', 'Интерактивное демо конференции')}
+            >
               <div className="phone-stage-tag">
                 <img src="./images/vinteo.jpg" alt="" />
                 <span>Vinteo Mobile</span>
@@ -380,6 +401,10 @@ export default function App() {
                   'Реконструкция интерфейса · демо-участники',
                 )}
               </p>
+              <a className="demo-return text-link" href="#conference-scenarios">
+                <ArrowUp size={16} />
+                {t('Choose another feature', 'Выбрать другую функцию')}
+              </a>
             </div>
           </div>
         </section>
@@ -398,9 +423,7 @@ export default function App() {
                 <img src="./images/ultimate-guitar.jpg" alt="" />
                 <img src="./images/musescore.jpg" alt="" />
               </span>
-              <h2 id="muse-heading">
-                Muse Group<span>.</span>
-              </h2>
+              <h2 id="muse-heading">Muse Group</h2>
             </div>
             <div className="employer-position">
               <strong>React Native Developer</strong>
@@ -412,11 +435,7 @@ export default function App() {
               <span className="case-kicker">
                 {t('ULTIMATE GUITAR + MUSESCORE', 'ULTIMATE GUITAR + MUSESCORE')}
               </span>
-              <h3>
-                {t('Reusable', 'Общий')}
-                <br />
-                <span>{t('advertising module', 'рекламный модуль')}</span>
-              </h3>
+              <h3>{t('Reusable advertising module', 'Общий рекламный модуль')}</h3>
             </div>
             <div>
               <p>
@@ -532,10 +551,7 @@ export default function App() {
             <span className="section-index">05 / {t('CONTACT', 'КОНТАКТЫ')}</span>
             <span>Senior / Lead React Native</span>
           </div>
-          <h2 id="contact-title">
-            {t('Get in touch', 'Связаться')}
-            <ArrowUpRight aria-hidden="true" />
-          </h2>
+          <h2 id="contact-title">{t('Get in touch', 'Связаться')}</h2>
           <div className="contact-bottom">
             <div>
               <p>
@@ -575,11 +591,11 @@ export default function App() {
         <span>
           © {new Date().getFullYear()} {t('Sergei Karukes', 'Сергей Карукес')}
         </span>
-        <a href="#home">
-          {t('Back to top', 'В начало')}
-          <ArrowUpRight size={13} />
-        </a>
       </footer>
+      <a className="back-to-top" href="#home">
+        <ArrowUp size={18} aria-hidden="true" />
+        {t('Back to top', 'Наверх')}
+      </a>
     </>
   );
 }

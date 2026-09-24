@@ -356,11 +356,7 @@ export function AdShowcase({
     <div className="ad-showcase">
       <div className="ad-showcase-copy">
         <span className="case-kicker">ULTIMATE GUITAR + MUSESCORE</span>
-        <h3>
-          {t('Advertising', 'Рекламные')}
-          <br />
-          <span>{t('formats', 'форматы')}</span>
-        </h3>
+        <h3>{t('Advertising formats', 'Рекламные форматы')}</h3>
         <p>
           {t(
             'I worked with banners, native, interstitial and rewarded ads in Ultimate Guitar and MuseScore, and optimized the screens around them.',
@@ -397,7 +393,9 @@ export function AdShowcase({
                       ? 'Interstitial'
                       : 'Rewarded'}
               </strong>
-              <ArrowUpRight size={15} />
+              <span className="selection-mark" aria-hidden="true">
+                {format === item && <Check size={15} />}
+              </span>
             </button>
           ))}
         </div>

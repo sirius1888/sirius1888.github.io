@@ -1,0 +1,62 @@
+/* Foundations adapted from https://getdesign.md/x.ai/design-md. */
+:root {
+  --gray-0: #ffffff;
+  --gray-50: #fafafa;
+  --gray-200: #dadbdf;
+  --gray-400: #96989d;
+  --gray-600: #61646a;
+  --gray-700: #363a3f;
+  --gray-800: #212327;
+  --gray-900: #191919;
+  --gray-950: #0a0a0a;
+  --bg: var(--gray-950);
+  --surface: var(--gray-900);
+  --surface-2: var(--gray-800);
+  --text: var(--gray-0);
+  --body: var(--gray-200);
+  --muted: var(--gray-400);
+  --line: var(--gray-800);
+  --control-line: var(--gray-600);
+  --accent: var(--gray-0);
+  --accent-text: var(--gray-950);
+  --font-body: 'Inter Variable', sans-serif;
+  --font-label: 'Geist Mono Variable', ui-monospace, monospace;
+  --text-label: 0.75rem;
+  --text-small: 0.875rem;
+  --text-body: 1rem;
+  --text-lead: 1.125rem;
+  --text-title: 1.25rem;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --radius: 8px;
+  --radius-pill: 9999px;
+  --page-gutter: clamp(20px, 4.5vw, 64px);
+  --section-space: clamp(64px, 7vw, 112px);
+  --header-height: 80px;
+  --motion-duration: 160ms;
+  color-scheme: dark;
+}
+:root[data-theme='light'] {
+  --bg: var(--gray-50);
+  --surface: var(--gray-0);
+  --surface-2: #eeeeef;
+  --text: var(--gray-950);
+  --body: var(--gray-700);
+  --muted: var(--gray-600);
+  --line: var(--gray-200);
+  --control-line: var(--gray-400);
+  --accent: var(--gray-950);
+  --accent-text: var(--gray-0);
+  color-scheme: light;
+}
+@media (max-width: 800px) {
+  :root {
+    --header-height: 72px;
+  }
+}

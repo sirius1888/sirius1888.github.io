@@ -14,7 +14,7 @@
 
 React · TypeScript · Vite · CSS. Тесты — Vitest и React Testing Library.
 
-Шрифты — Montserrat и Inter. Иконки — [Lucide](https://lucide.dev/) и [Devicon](https://devicon.dev/).
+Шрифты — Inter и Geist Mono. Иконки — [Lucide](https://lucide.dev/) и [Devicon](https://devicon.dev/). Дизайн-система описана в [DESIGN.md](./DESIGN.md).
 
 ## Локальный запуск
 
