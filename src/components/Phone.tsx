@@ -19,10 +19,8 @@ import {
   WifiOff,
   X,
 } from 'lucide-react';
-import { type Demo, type Language } from '../content';
+import { localize as local, type Demo, type Language } from '../content';
 import type { ReactNode } from 'react';
-
-const local = (lang: Language) => (en: string, ru: string) => (lang === 'en' ? en : ru);
 
 export function VinteoScene({
   lang,

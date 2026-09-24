@@ -1,7 +1,14 @@
+import { keepWordsTogether } from './typography';
+
 export type Language = 'en' | 'ru';
 export type Project = 'vinteo' | 'ug';
 export type Demo = 'call' | 'chat' | 'pip' | 'viewer' | 'reconnect';
-export const bi = (en: string, ru: string) => ({ en, ru });
+export const bi = (en: string, ru: string) => ({
+  en: keepWordsTogether(en, 'en'),
+  ru: keepWordsTogether(ru, 'ru'),
+});
+export const localize = (lang: Language) => (en: string, ru: string) =>
+  keepWordsTogether(lang === 'en' ? en : ru, lang);
 export const projects = {
   vinteo: {
     name: 'Vinteo Mobile',

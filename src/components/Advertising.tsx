@@ -21,7 +21,7 @@ import {
   Sparkles,
   X,
 } from 'lucide-react';
-import type { Language } from '../content';
+import { localize as local, type Language } from '../content';
 import { IPhone } from './Phone';
 export type AdConfig = {
   sdk: 'GAM' | 'ironSource';
@@ -39,7 +39,6 @@ export const initialAdConfig: AdConfig = {
   experiments: false,
   consent: false,
 };
-const local = (lang: Language) => (en: string, ru: string) => (lang === 'en' ? en : ru);
 export const musicApps = {
   ug: {
     name: 'Ultimate Guitar',
@@ -399,7 +398,7 @@ export function AdShowcase({
             </button>
           ))}
         </div>
-        <p className="format-description">{descriptions[format][lang === 'en' ? 0 : 1]}</p>
+        <p className="format-description">{t(...descriptions[format])}</p>
         <button
           className={`consent-toggle ${config.consent ? 'enabled' : ''}`}
           aria-pressed={config.consent}

@@ -28,7 +28,7 @@ import {
   initialAdConfig,
   type AdConfig,
 } from './components/Advertising';
-import { bi, earlier, projects, type Demo, type Language } from './content';
+import { bi, earlier, localize, projects, type Demo, type Language } from './content';
 
 const scenarios = [
   {
@@ -72,7 +72,7 @@ export default function App() {
   const [adConfig, setAdConfig] = useState<AdConfig>(initialAdConfig);
   const [adEvents, setAdEvents] = useState<string[]>([]);
   const [adResetVersion, setAdResetVersion] = useState(0);
-  const t = (en: string, ru: string) => (lang === 'en' ? en : ru);
+  const t = localize(lang);
   useEffect(() => {
     try {
       if (localStorage.getItem('sk-language') === 'ru') setLang('ru');

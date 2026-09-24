@@ -31,7 +31,7 @@ import {
   Megaphone,
   type LucideIcon,
 } from 'lucide-react';
-import { skillGroups, type Language } from '../content';
+import { localize, skillGroups, type Language } from '../content';
 
 const logos: Record<string, string> = {
   'React Native': 'react',
@@ -60,6 +60,19 @@ const logos: Record<string, string> = {
   RuStore: 'rustore',
   'Huawei AppGallery': 'appgallery',
 };
+// These logos need tonal differences to retain their lettering and internal detail.
+const multitoneLogos = new Set([
+  'typescript',
+  'javascript',
+  'swift',
+  'android',
+  'realm',
+  'sqlite',
+  'xcode',
+  'eslint',
+  'kotlin',
+  'rustore',
+]);
 const symbols: Record<string, LucideIcon> = {
   Reanimated: Zap,
   Hermes: Zap,
@@ -103,9 +116,7 @@ export function SkillIcon({ name }: { name: string }) {
     return (
       <img
         className={
-          ['apple', 'gradle', 'googleplay'].includes(logos[name])
-            ? 'skill-logo apple-logo'
-            : 'skill-logo'
+          multitoneLogos.has(logos[name]) ? 'skill-logo' : 'skill-logo skill-logo-monochrome'
         }
         src={`./icons/${logos[name]}.svg`}
         alt=""
@@ -149,7 +160,7 @@ export function SocialLinks({ lang }: { lang: Language }) {
   );
 }
 export function ProfileHero({ lang }: { lang: Language }) {
-  const t = (en: string, ru: string) => (lang === 'en' ? en : ru);
+  const t = localize(lang);
   return (
     <section className="profile-section wrap" id="home" aria-labelledby="profile-title">
       <div className="profile-main">
@@ -203,7 +214,11 @@ export function ProfileHero({ lang }: { lang: Language }) {
         <h2>{t('Technologies I work with', 'Технологии, с которыми работаю')}</h2>
         <div className="all-skills">
           {skillGroups.map((group) => (
-            <section className="skill-category" key={group.id} aria-label={group.title[lang]}>
+            <section
+              className={`skill-category skill-category-${group.id}`}
+              key={group.id}
+              aria-label={group.title[lang]}
+            >
               <h3>{group.title[lang]}</h3>
               <ul>
                 {group.items.map((name) => (

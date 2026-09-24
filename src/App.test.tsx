@@ -43,15 +43,15 @@ describe('Portfolio v2 visitor journeys', () => {
       'Hello from the portfolio',
     );
     await user.click(screen.getByRole('button', { name: 'Send message' }));
-    await user.click(screen.getByRole('button', { name: 'Switch to light theme' }));
-    await user.click(screen.getByRole('button', { name: 'Switch to Russian' }));
+    await user.click(screen.getByRole('button', { name: /^Switch to\s+light theme$/ }));
+    await user.click(screen.getByRole('button', { name: /^Switch to\s+Russian$/ }));
     expect(document.documentElement.lang).toBe('ru');
     expect(document.documentElement.dataset.theme).toBe('light');
     expect(screen.getByRole('button', { name: 'ironSource' }).getAttribute('aria-pressed')).toBe(
       'true',
     );
     expect(
-      within(screen.getByRole('group', { name: 'Выбрать приложение с рекламой' }))
+      within(screen.getByRole('group', { name: /^Выбрать приложение с\s+рекламой$/ }))
         .getByRole('button', { name: 'MuseScore' })
         .getAttribute('aria-pressed'),
     ).toBe('true');
@@ -122,8 +122,8 @@ describe('Portfolio v2 visitor journeys', () => {
     expect(
       (screen.getByRole('button', { name: 'Turn camera off' }) as HTMLButtonElement).disabled,
     ).toBe(true);
-    await user.click(screen.getByRole('button', { name: 'Picture in Picture' }));
-    await user.click(screen.getByRole('button', { name: 'Return to full call' }));
+    await user.click(screen.getByRole('button', { name: /^Picture in\s+Picture$/ }));
+    await user.click(screen.getByRole('button', { name: /^Return to\s+full call$/ }));
     expect(
       (screen.getByRole('button', { name: 'Mute microphone' }) as HTMLButtonElement).disabled,
     ).toBe(false);
@@ -195,18 +195,18 @@ describe('Portfolio v2 visitor journeys', () => {
     render(<App />);
     fireEvent.click(consent());
     fireEvent.click(within(formats()).getByRole('button', { name: /Rewarded/ }));
-    fireEvent.click(screen.getByRole('button', { name: 'Watch demo for a reward' }));
+    fireEvent.click(screen.getByRole('button', { name: /^Watch demo for\s+a\s+reward$/ }));
     act(() => vi.advanceTimersByTime(2000));
     expect(screen.queryByRole('button', { name: 'Collect demo reward' })).toBeNull();
     fireEvent.click(within(apps()).getByRole('button', { name: 'MuseScore' }));
     act(() => vi.advanceTimersByTime(5000));
     expect(screen.queryByRole('dialog')).toBeNull();
     expect(screen.queryByText('Demo reward received')).toBeNull();
-    fireEvent.click(screen.getByRole('button', { name: 'Watch demo for a reward' }));
+    fireEvent.click(screen.getByRole('button', { name: /^Watch demo for\s+a\s+reward$/ }));
     act(() => vi.advanceTimersByTime(4000));
     fireEvent.click(screen.getByRole('button', { name: 'Collect demo reward' }));
     expect(screen.getByText('Demo reward received')).toBeTruthy();
-    fireEvent.click(screen.getByRole('button', { name: 'Watch demo for a reward' }));
+    fireEvent.click(screen.getByRole('button', { name: /^Watch demo for\s+a\s+reward$/ }));
     fireEvent.click(screen.getByRole('button', { name: /Demo consent granted/ }));
     act(() => vi.advanceTimersByTime(5000));
     expect(screen.queryByRole('dialog')).toBeNull();
@@ -222,7 +222,9 @@ describe('Portfolio v2 visitor journeys', () => {
       .filter((a) => a.getAttribute('href')?.includes('t.me/')))
       expect(link.getAttribute('href')).toBe('https://t.me/ser1888');
     expect(
-      screen.getByRole('link', { name: 'Vinteo Mobile on the App Store' }).getAttribute('href'),
+      screen
+        .getByRole('link', { name: /^Vinteo Mobile on\s+the\s+App Store$/ })
+        .getAttribute('href'),
     ).toContain('1582762458');
   });
   it('hydrates the complete static HTML without mismatches and restores saved preferences', () => {
