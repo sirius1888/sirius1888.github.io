@@ -169,11 +169,16 @@ export const skillGroups = [
     id: 'releases',
     title: bi('Release management', 'Управление релизами'),
     subtitle: bi('Builds & distribution', 'Сборки и публикация'),
-    items: ['Gradle', 'Xcode', 'Git'],
-    description: bi(
-      'I publish alpha, beta and production releases on Google Play, the App Store, RuStore and Huawei AppGallery.',
-      'Публикую альфа-, бета- и релизные версии в Google Play, App Store, RuStore и Huawei AppGallery.',
-    ),
+    items: [
+      'Gradle',
+      'Xcode',
+      'Git',
+      'Alpha / Beta / Release',
+      'Google Play',
+      'App Store',
+      'RuStore',
+      'Huawei AppGallery',
+    ],
   },
   {
     id: 'advertising',

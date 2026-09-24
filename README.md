@@ -14,7 +14,7 @@
 
 React · TypeScript · Vite · CSS. Тесты — Vitest и React Testing Library.
 
-Шрифты — Inter и Geist Mono. Иконки — [Lucide](https://lucide.dev/) и [Devicon](https://devicon.dev/). Дизайн-система описана в [DESIGN.md](./DESIGN.md).
+Шрифты — Inter и Geist Mono. Иконки — [Lucide](https://lucide.dev/), [Devicon](https://devicon.dev/) и [Simple Icons](https://simpleicons.org/); логотип RuStore — с [официального сайта](https://www.rustore.ru/). Дизайн-система описана в [DESIGN.md](./DESIGN.md).
 
 ## Локальный запуск
 

@@ -16,6 +16,7 @@ import {
   Phone,
   PictureInPicture2,
   Radio,
+  Rocket,
   ShieldCheck,
   Smartphone,
   TestTube2,
@@ -54,6 +55,10 @@ const logos: Record<string, string> = {
   Gradle: 'gradle',
   Xcode: 'xcode',
   Git: 'git',
+  'Google Play': 'googleplay',
+  'App Store': 'appstore',
+  RuStore: 'rustore',
+  'Huawei AppGallery': 'appgallery',
 };
 const symbols: Record<string, LucideIcon> = {
   Reanimated: Zap,
@@ -81,6 +86,7 @@ const symbols: Record<string, LucideIcon> = {
   'Unit / E2E testing': TestTube2,
   'A/B testing': FlaskConical,
   'Code review': CheckCheck,
+  'Alpha / Beta / Release': Rocket,
   AdMob: Megaphone,
   'Google Ad Manager': Layers,
   AppLovin: Megaphone,
@@ -97,7 +103,9 @@ export function SkillIcon({ name }: { name: string }) {
     return (
       <img
         className={
-          ['apple', 'gradle'].includes(logos[name]) ? 'skill-logo apple-logo' : 'skill-logo'
+          ['apple', 'gradle', 'googleplay'].includes(logos[name])
+            ? 'skill-logo apple-logo'
+            : 'skill-logo'
         }
         src={`./icons/${logos[name]}.svg`}
         alt=""
@@ -205,7 +213,6 @@ export function ProfileHero({ lang }: { lang: Language }) {
                   </li>
                 ))}
               </ul>
-              {group.description && <p className="skill-description">{group.description[lang]}</p>}
             </section>
           ))}
         </div>
