@@ -1187,6 +1187,12 @@ svg {
 .previous-period {
   padding-top: 5px;
 }
+.previous-duration {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-body);
+  letter-spacing: normal;
+}
 .previous-company h3 {
   font-size: 28px;
   font-weight: 400;

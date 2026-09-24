@@ -215,7 +215,7 @@ describe('Portfolio v2 visitor journeys', () => {
   it('keeps O! historical and text-only and links to the confirmed contact and both apps', () => {
     render(<App />);
     const historical = screen.getByRole('heading', { name: 'O!' }).closest('article')!;
-    expect(within(historical).getAllByRole('listitem')).toHaveLength(4);
+    expect(within(historical).getAllByRole('listitem')).toHaveLength(6);
     expect(historical.querySelector('button,img,video')).toBeNull();
     for (const link of screen
       .getAllByRole('link')

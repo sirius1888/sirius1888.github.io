@@ -228,36 +228,97 @@ export const experience = [
   {
     company: 'O!',
     period: bi('Dec 2019 — Jun 2021', 'Декабрь 2019 — июнь 2021'),
-    role: bi('Android / iOS Developer', 'Android / iOS Developer'),
+    role: bi('Middle Android / iOS Developer', 'Middle Android / iOS Developer'),
     body: bi(
-      'Payment app: redesigned screens and UI components, optimized screen loading, and participated in the migration to MVVM. Started developing for iOS in Swift and implemented the same features on Android and iOS.',
-      'Платёжное приложение: редизайн экранов и UI-компонентов, оптимизация загрузки экранов, участие в переходе на MVVM. Здесь начал разрабатывать под iOS на Swift и реализовывал одни и те же функции на Android и iOS.',
+      'Payment app: new features on Android and iOS, payment history, profile and widget redesign, MVVM migration, legacy refactoring, screen loading optimization and unit tests. Started iOS development in Swift and delivered the same features on both platforms. Discussed requirements with managers and planned work using Agile/Scrum.',
+      'Платёжное приложение: новый функционал под Android и iOS, редизайн истории платежей, профиля и виджетов, переход на MVVM, рефакторинг легаси, оптимизация загрузки экранов и unit-тесты. Здесь начал писать под iOS на Swift и реализовывал одинаковые функции на обеих платформах. Обсуждал ТЗ с менеджерами и планировал задачи по Agile/Scrum.',
     ),
   },
 ];
 export const earlier = [
   {
+    company: 'O!',
+    role: 'Middle Android / iOS Developer',
+    period: bi('Dec\u00a02019 — Jun\u00a02021', 'Декабрь\u00a02019 — июнь\u00a02021'),
+    duration: bi('1 year 7 months', '1 год 7 месяцев'),
+    project: bi('My O! · Payment app', 'Мой О! · Платёжное приложение'),
+    location: bi('Bishkek', 'Бишкек'),
+    contributions: [
+      bi(
+        'Developed new features for Android and iOS. Started writing iOS code in Swift and implemented the same functionality on both platforms.',
+        'Разрабатывал новый функционал для Android и iOS. Здесь начал писать под iOS на Swift и реализовывал одни и те же функции на обеих платформах.',
+      ),
+      bi(
+        'Helped design the interfaces and redesigned payment history, profile creation and editing, and widgets.',
+        'Участвовал в проектировании интерфейсов. Переработал историю платежей, создание и редактирование профиля, виджеты.',
+      ),
+      bi(
+        'Refactored legacy code and participated in the migration to MVVM.',
+        'Переписывал легаси-код и участвовал в переводе приложения на MVVM.',
+      ),
+      bi('Optimized screen loading.', 'Оптимизировал загрузку экранов.'),
+      bi('Wrote unit tests.', 'Писал unit-тесты.'),
+      bi(
+        'Discussed requirements with managers and planned tasks using Agile/Scrum.',
+        'Обсуждал ТЗ с менеджерами и планировал задачи по Agile/Scrum.',
+      ),
+    ],
+  },
+  {
     company: 'Inobi',
     role: 'Android Developer',
-    period: '2019',
-    desc: bi(
-      'Olympic Council of Asia project · MVVM, MVP and Google Play release.',
-      'Проект Olympic Council of Asia · MVVM, MVP и публикация в Google Play.',
-    ),
+    period: bi('Apr\u00a02019 — Dec\u00a02019', 'Апрель\u00a02019 — декабрь\u00a02019'),
+    duration: bi('9 months', '9 месяцев'),
+    project: bi('Olympic Council of Asia', 'Olympic Council of Asia'),
+    contributions: [
+      bi(
+        'Designed the application architecture and introduced MVVM.',
+        'Проектировал архитектуру приложения и добавил поддержку MVVM.',
+      ),
+      bi('Contributed to the interface design.', 'Участвовал в проектировании интерфейсов.'),
+      bi(
+        'Built the first working version of the app (MVP).',
+        'Подготовил первую рабочую версию приложения (MVP).',
+      ),
+      bi('Published the app on Google Play.', 'Опубликовал приложение в Google Play.'),
+    ],
   },
   {
     company: 'TimelySoft',
     role: 'Junior Android Developer',
-    period: '2018 — 2019',
-    desc: bi(
-      'Warehouse app · Offline-first synchronization and barcode scanning.',
-      'Складское приложение · Офлайн-синхронизация и сканирование штрихкодов.',
+    period: bi('Sep\u00a02018 — Apr\u00a02019', 'Сентябрь\u00a02018 — апрель\u00a02019'),
+    duration: bi('8 months', '8 месяцев'),
+    project: bi(
+      'Imperia Pizza · Warehouse management app',
+      'Imperia Pizza · Приложение складского учёта',
     ),
+    location: bi('Bishkek', 'Бишкек'),
+    contributions: [
+      bi(
+        'Designed the application architecture using MVP (Model–View–Presenter).',
+        'Спроектировал архитектуру приложения по шаблону MVP (Model–View–Presenter).',
+      ),
+      bi(
+        'Built the first working version of the app.',
+        'Подготовил первую рабочую версию приложения.',
+      ),
+      bi('Tested the app on site.', 'Тестировал приложение на производстве.'),
+      bi(
+        'Integrated QR code and barcode scanners.',
+        'Реализовал поддержку сканеров QR-кодов и штрихкодов.',
+      ),
+      bi(
+        'Implemented local data storage and offline operation, with synchronization when a stable internet connection became available.',
+        'Реализовал работу с локальными данными и офлайн-режим с отправкой накопленных данных при восстановлении стабильного соединения.',
+      ),
+    ],
   },
   {
     company: 'CS-Soft',
     role: 'Intern / Junior Android Developer',
-    period: '2018',
+    period: bi('Mar\u00a02018 — Aug\u00a02018', 'Март\u00a02018 — август\u00a02018'),
+    duration: bi('6 months', '6 месяцев'),
+    location: bi('Bishkek', 'Бишкек'),
     desc: bi(
       'Maintained and improved a legacy Android application.',
       'Поддержка и развитие существующего Android-приложения.',

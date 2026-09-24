@@ -509,39 +509,27 @@ export default function App() {
             </p>
           </div>
           <div className="previous-jobs">
-            <article className="previous-job o-job">
-              <div className="previous-period">
-                {t('DEC 2019 — JUN 2021', 'ДЕКАБРЬ 2019 — ИЮНЬ 2021')}
-              </div>
-              <div className="previous-company">
-                <h3>O!</h3>
-                <span>Android / iOS Developer</span>
-                <small>{t('My O! · Payment application', 'Мой О! · Платёжное приложение')}</small>
-              </div>
-              <ul>
-                <li>
-                  {t(
-                    'Started developing for iOS in Swift and implemented the same features on Android and iOS.',
-                    'Здесь начал разрабатывать под iOS на Swift и реализовывал одни и те же функции на Android и iOS.',
-                  )}
-                </li>
-                <li>
-                  {t('Redesigned screens and UI components.', 'Редизайн экранов и UI-компонентов.')}
-                </li>
-                <li>{t('Optimized screen loading.', 'Оптимизация загрузки экранов.')}</li>
-                <li>
-                  {t('Participated in the migration to MVVM.', 'Участие в переходе на MVVM.')}
-                </li>
-              </ul>
-            </article>
             {earlier.map((item) => (
               <article className="previous-job" key={item.company}>
-                <div className="previous-period">{item.period}</div>
+                <div className="previous-period">
+                  {item.period[lang]}
+                  <span className="previous-duration">{item.duration[lang]}</span>
+                </div>
                 <div className="previous-company">
                   <h3>{item.company}</h3>
                   <span>{item.role}</span>
+                  {item.project && <small>{item.project[lang]}</small>}
+                  {item.location && <small>{item.location[lang]}</small>}
                 </div>
-                <p>{item.desc[lang]}</p>
+                {item.contributions ? (
+                  <ul>
+                    {item.contributions.map((contribution, index) => (
+                      <li key={index}>{contribution[lang]}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>{item.desc[lang]}</p>
+                )}
               </article>
             ))}
           </div>
