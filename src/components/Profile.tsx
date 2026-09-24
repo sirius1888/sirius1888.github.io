@@ -16,7 +16,6 @@ import {
   Phone,
   PictureInPicture2,
   Radio,
-  Rocket,
   ShieldCheck,
   Smartphone,
   TestTube2,
@@ -82,7 +81,6 @@ const symbols: Record<string, LucideIcon> = {
   'Unit / E2E testing': TestTube2,
   'A/B testing': FlaskConical,
   'Code review': CheckCheck,
-  'Release management': Rocket,
   AdMob: Megaphone,
   'Google Ad Manager': Layers,
   AppLovin: Megaphone,
@@ -207,6 +205,7 @@ export function ProfileHero({ lang }: { lang: Language }) {
                   </li>
                 ))}
               </ul>
+              {group.description && <p className="skill-description">{group.description[lang]}</p>}
             </section>
           ))}
         </div>

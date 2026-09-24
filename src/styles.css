@@ -307,6 +307,13 @@ svg {
   margin: 0;
   list-style: none;
 }
+.skill-description {
+  max-width: 65ch;
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-small);
+  line-height: 1.6;
+  color: var(--body);
+}
 .skill-category li {
   display: inline-flex;
   align-items: center;
