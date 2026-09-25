@@ -16,6 +16,8 @@ React · TypeScript · Vite · CSS. Тесты — Vitest и React Testing Libra
 
 Шрифты — Inter и Geist Mono. Иконки — [Lucide](https://lucide.dev/), [Devicon](https://devicon.dev/) и [Simple Icons](https://simpleicons.org/); логотип RuStore — с [официального сайта](https://www.rustore.ru/). Дизайн-система описана в [DESIGN.md](./DESIGN.md).
 
+Общие компоненты собрал в [UI kit](./src/ui-kit/README.md). Их API, структуру разделов и применение SOLID описал в [документации компонентов](./docs/COMPONENTS.md).
+
 ## Локальный запуск
 
 Версия Node.js указана в `.nvmrc`.

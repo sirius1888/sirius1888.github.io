@@ -1,14 +1,6 @@
-import { keepWordsTogether } from './typography';
+import type { ExperienceEntry } from './features/experience/model';
+import { bi } from './i18n';
 
-export type Language = 'en' | 'ru';
-export type Project = 'vinteo' | 'ug';
-export type Demo = 'call' | 'chat' | 'pip' | 'viewer' | 'reconnect';
-export const bi = (en: string, ru: string) => ({
-  en: keepWordsTogether(en, 'en'),
-  ru: keepWordsTogether(ru, 'ru'),
-});
-export const localize = (lang: Language) => (en: string, ru: string) =>
-  keepWordsTogether(lang === 'en' ? en : ru, lang);
 export const projects = {
   vinteo: {
     name: 'Vinteo Mobile',
@@ -75,29 +67,6 @@ export const projects = {
     ],
   },
 };
-export const demos: { id: Demo; title: ReturnType<typeof bi>; subtitle: ReturnType<typeof bi> }[] =
-  [
-    {
-      id: 'chat',
-      title: bi('Conference chat', 'Чат конференции'),
-      subtitle: bi('Messages during a conference.', 'Сообщения во время конференции.'),
-    },
-    {
-      id: 'pip',
-      title: bi('Picture in Picture', 'Картинка в картинке'),
-      subtitle: bi('Video in a floating iOS window.', 'Видео в плавающем окне iOS.'),
-    },
-    {
-      id: 'viewer',
-      title: bi('Viewer mode', 'Режим зрителя'),
-      subtitle: bi('Watch without a microphone or camera.', 'Просмотр без микрофона и камеры.'),
-    },
-    {
-      id: 'reconnect',
-      title: bi('Reconnection', 'Переподключение'),
-      subtitle: bi('Recover after a connection loss.', 'Восстановление после потери связи.'),
-    },
-  ];
 export const skillGroups = [
   {
     id: 'mobile',
@@ -205,37 +174,7 @@ export const skillGroups = [
     ],
   },
 ];
-export const experience = [
-  {
-    company: 'Vinteo',
-    period: bi('Sep 2024 — present', 'Сентябрь 2024 — настоящее время'),
-    role: bi('Team Lead React Native Engineer', 'Team Lead React Native Engineer'),
-    body: bi(
-      'Senior → Team Lead since October 2025. Mobile conferencing, native integrations and a team with two developers, two QA engineers and a PM, in addition to myself.',
-      'Senior → Team Lead с октября 2025. Мобильные видеоконференции, нативные интеграции и команда: два разработчика, два тестировщика и PM, помимо меня.',
-    ),
-    current: true,
-  },
-  {
-    company: 'Muse Group',
-    period: bi('May 2021 — Sep 2024', 'Май 2021 — сентябрь 2024'),
-    role: bi('React Native Developer', 'React Native Developer'),
-    body: bi(
-      'Ultimate Guitar and MuseScore. Advertising architecture, reusable integrations, analytics and experiments. Collaboration with international teams and SDK vendors.',
-      'Ultimate Guitar и MuseScore. Рекламная архитектура, переиспользуемые интеграции, аналитика и эксперименты. Работа с международными командами и поставщиками SDK.',
-    ),
-  },
-  {
-    company: 'O!',
-    period: bi('Dec 2019 — Jun 2021', 'Декабрь 2019 — июнь 2021'),
-    role: bi('Middle Android / iOS Developer', 'Middle Android / iOS Developer'),
-    body: bi(
-      'Payment app: new features on Android and iOS, payment history, profile and widget redesign, MVVM migration, legacy refactoring, screen loading optimization and unit tests. Started iOS development in Swift and delivered the same features on both platforms. Discussed requirements with managers and planned work using Agile/Scrum.',
-      'Платёжное приложение: новый функционал под Android и iOS, редизайн истории платежей, профиля и виджетов, переход на MVVM, рефакторинг легаси, оптимизация загрузки экранов и unit-тесты. Здесь начал писать под iOS на Swift и реализовывал одинаковые функции на обеих платформах. Обсуждал ТЗ с менеджерами и планировал задачи по Agile/Scrum.',
-    ),
-  },
-];
-export const earlier = [
+export const earlier: readonly ExperienceEntry[] = [
   {
     company: 'O!',
     role: 'Middle Android / iOS Developer',

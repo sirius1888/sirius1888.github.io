@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import '@fontsource-variable/geist-mono';
 import '@fontsource-variable/inter';
 import './tokens.css';
+import './ui-kit/ui-kit.css';
 import './styles.css';
 import './phone.css';
 import App from './App';

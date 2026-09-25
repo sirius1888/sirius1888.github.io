@@ -107,7 +107,6 @@ svg {
   padding-block: 12px;
 }
 .header nav a:hover,
-.text-link:hover,
 .profile-socials a:hover,
 .profile-bottom a:hover {
   text-decoration: underline;
@@ -130,14 +129,6 @@ svg {
 .language .current {
   color: var(--text);
 }
-.icon-button {
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--control-line);
-  border-radius: var(--radius-pill);
-}
 .header-contact {
   display: flex;
   align-items: center;
@@ -151,39 +142,9 @@ svg {
 .menu-toggle {
   display: none;
 }
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
-  min-height: 48px;
-  padding: 12px 24px;
-  border: 1px solid var(--control-line);
-  border-radius: var(--radius-pill);
-  font-size: var(--text-small);
-  font-weight: 500;
-  transition: background var(--motion-duration);
-}
-.button-accent {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-text);
-}
-.button-accent:hover {
-  opacity: 0.85;
-}
-.icon-button:hover,
 .header-contact:hover {
   background: var(--surface-2);
 }
-.text-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  min-height: 44px;
-  font-size: var(--text-small);
-}
-.section-index,
 .case-kicker,
 .control-label,
 .previous-period {
@@ -423,18 +384,6 @@ svg {
 .employer-section {
   padding-top: var(--section-space);
 }
-.chapter-overline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--space-3) var(--space-6);
-  margin-bottom: var(--space-8);
-}
-.chapter-overline > span:last-child {
-  font: 400 var(--text-label)/1.6 var(--font-label);
-  color: var(--muted);
-}
 .current-badge {
   display: flex;
   align-items: center;
@@ -442,26 +391,6 @@ svg {
 }
 .current-badge > span {
   display: none;
-}
-.employer-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-8);
-  padding-bottom: var(--space-8);
-  border-bottom: 1px solid var(--line);
-}
-.employer-name {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
-}
-.employer-name > h2 {
-  font-size: clamp(40px, 4.3vw, 64px);
-  line-height: 1.05;
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  margin: 0;
 }
 .employer-brand > img {
   width: 48px;
@@ -482,20 +411,6 @@ svg {
 .employer-apps > img:last-child {
   margin-left: -16px;
   margin-top: 12px;
-}
-.employer-position {
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-.employer-position > strong {
-  font-size: var(--text-body);
-  font-weight: 400;
-}
-.employer-position > span {
-  font-size: var(--text-small);
-  color: var(--muted);
 }
 .leadership-layout,
 .muse-intro {
@@ -672,25 +587,6 @@ svg {
   align-items: center;
   flex-direction: column;
   min-width: 0;
-}
-.phone-stage-tag {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  font-size: var(--text-small);
-  margin-bottom: var(--space-6);
-}
-.phone-stage-tag > img {
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-}
-.phone-stage-tag > small {
-  font: var(--text-label)/1.5 var(--font-label);
-  color: var(--muted);
-  padding-left: var(--space-2);
 }
 .device-caption {
   font-size: var(--text-label);
@@ -973,32 +869,6 @@ svg {
   display: block;
   margin-top: 6px;
   color: var(--muted);
-}
-.toggle {
-  width: 36px;
-  height: 22px;
-  border-radius: var(--radius-pill);
-  background: var(--control-line);
-  position: relative;
-  flex-shrink: 0;
-  display: block;
-}
-.toggle:after {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  content: '';
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--bg);
-  transition: transform var(--motion-duration);
-}
-.enabled .toggle {
-  background: var(--text);
-}
-.enabled .toggle:after {
-  transform: translateX(14px);
 }
 .experiment-preview {
   display: flex;

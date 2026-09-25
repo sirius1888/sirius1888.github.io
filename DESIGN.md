@@ -6,6 +6,7 @@ I use the [xAI design study](https://getdesign.md/x.ai/design-md) as a reference
 
 - `src/tokens.css` defines palette values and semantic aliases for both themes, typography, spacing, radii and motion.
 - `src/styles.css` contains the page layout and controls.
+- `src/ui-kit/ui-kit.css` contains shared primitive styles and the device frame; component contracts are documented in `src/ui-kit/README.md`.
 - `src/phone.css` contains the simulated app interfaces. Their product colours remain independent of the page theme.
 - Inter is the open font alternative suggested by the reference; Geist Mono is used for short labels and configuration data. Both are served locally.
 - Body text is 16px, the introduction is 18px, secondary text is 14px and short labels are 12px. App simulations use their own compact type scale.
