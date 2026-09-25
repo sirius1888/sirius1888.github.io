@@ -40,7 +40,7 @@
   --section-space: clamp(64px, 7vw, 112px);
   --header-height: 80px;
   --motion-duration: 160ms;
-  --motion-reveal-duration: 560ms;
+  --motion-reveal-duration: 420ms;
   --motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   color-scheme: dark;
 }

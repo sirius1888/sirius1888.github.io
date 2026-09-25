@@ -20,7 +20,8 @@ export function useScrollReveal() {
           }
         }
       },
-      { threshold: 0.08 },
+      // Start before the leading edge enters the viewport, regardless of the region's height.
+      { rootMargin: '0px 0px 120px 0px', threshold: 0 },
     );
 
     // Do not replay entrances above the fold or when restoring a scrolled page.
