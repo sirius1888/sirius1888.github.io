@@ -30,6 +30,7 @@ export function SkillsPanel({ lang }: { lang: Language }) {
             className={`skill-category skill-category-${group.id}`}
             key={group.id}
             aria-label={group.title[lang]}
+            data-reveal
           >
             <h3>{group.title[lang]}</h3>
             <ul>

@@ -14,7 +14,7 @@ export function ExperienceSection({ lang }: { lang: Language }) {
         label={t('EARLIER EXPERIENCE', 'ПРЕДЫДУЩИЙ ОПЫТ')}
         aside={<span>2018 — 2021</span>}
       />
-      <div className="earlier-heading">
+      <div className="earlier-heading" data-reveal>
         <h2 id="earlier-title">
           {t('Android & iOS', 'Разработка')}
           <br />

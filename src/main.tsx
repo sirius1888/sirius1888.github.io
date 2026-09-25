@@ -6,6 +6,7 @@ import './tokens.css';
 import './ui-kit/ui-kit.css';
 import './styles.css';
 import './phone.css';
+import './motion.css';
 import App from './App';
 
 const root = document.getElementById('root')!;

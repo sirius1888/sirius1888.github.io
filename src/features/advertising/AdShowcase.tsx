@@ -37,7 +37,7 @@ export function AdShowcase({
   } = placement;
   const appInfo = musicApps[app];
   return (
-    <div className="ad-showcase">
+    <div className="ad-showcase" data-reveal>
       <AdShowcaseControls
         lang={lang}
         config={config}

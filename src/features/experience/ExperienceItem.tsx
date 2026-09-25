@@ -5,7 +5,7 @@ export type ExperienceItemProps = { item: ExperienceEntry; lang: Language };
 /** One historical role: dates, employer metadata and confirmed contributions. */
 export function ExperienceItem({ item, lang }: ExperienceItemProps) {
   return (
-    <article className="previous-job">
+    <article className="previous-job" data-reveal>
       <div className="previous-period">
         {item.period[lang]}
         <span className="previous-duration">{item.duration[lang]}</span>

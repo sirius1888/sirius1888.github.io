@@ -11,7 +11,7 @@ export function ConferenceShowcase({ lang }: { lang: Language }) {
   const t = localize(lang);
   const { demo, setDemo, demoStage, selectScenario } = useConferenceScenario();
   return (
-    <div className="vinteo-product" id="vinteo-mobile">
+    <div className="vinteo-product" id="vinteo-mobile" data-reveal>
       <div className="product-case-copy">
         <span className="case-kicker">
           {t('PRODUCT / VINTEO MOBILE', 'ПРОДУКТ / VINTEO MOBILE')}

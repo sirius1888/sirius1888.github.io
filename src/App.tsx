@@ -7,10 +7,12 @@ import { ProfileHero } from './features/profile/ProfileHero';
 import { SkillsPanel } from './features/profile/SkillsPanel';
 import { VinteoSection } from './features/vinteo/VinteoSection';
 import { usePreferences } from './hooks/usePreferences';
+import { useScrollReveal } from './hooks/useScrollReveal';
 
 /** Application composition root. Feature state remains owned by the corresponding chapter. */
 export default function App() {
   const { lang, theme, toggleLanguage, toggleTheme } = usePreferences();
+  const contentRef = useScrollReveal();
   return (
     <>
       <SiteHeader
@@ -19,7 +21,7 @@ export default function App() {
         onToggleLanguage={toggleLanguage}
         onToggleTheme={toggleTheme}
       />
-      <main id="main">
+      <main id="main" ref={contentRef}>
         <ProfileHero lang={lang} />
         <VinteoSection lang={lang} />
         <MuseSection lang={lang} />

@@ -6,7 +6,7 @@ export function LeadershipSummary({ lang }: { lang: Language }) {
   const t = localize(lang);
 
   return (
-    <div className="leadership-layout">
+    <div className="leadership-layout" data-reveal>
       <div className="leadership-intro">
         <span className="case-kicker">{t('MY RESPONSIBILITIES', 'МОИ ЗАДАЧИ')}</span>
         <h3>{t('Development and team leadership', 'Разработка и руководство командой')}</h3>

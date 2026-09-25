@@ -1,0 +1,117 @@
+/* Motion is an enhancement: resting styles always keep the content visible. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-cue {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .profile-main > *,
+  .profile-portrait,
+  .profile-bottom,
+  .reveal-enter {
+    animation: reveal-up var(--motion-reveal-duration) var(--motion-ease-out) backwards;
+  }
+  .profile-role {
+    animation-delay: 60ms;
+  }
+  .profile-bio {
+    animation-delay: 120ms;
+  }
+  .profile-actions,
+  .profile-portrait {
+    animation-delay: 180ms;
+  }
+  .profile-core {
+    animation-delay: 220ms;
+  }
+  .profile-main > .profile-socials {
+    animation-delay: 260ms;
+  }
+  .profile-bottom {
+    animation-delay: 300ms;
+  }
+  .profile-scroll svg {
+    animation: scroll-cue 1600ms ease-in-out 800ms 2;
+  }
+
+  .back-to-top:not([hidden]),
+  .mobile-navigation:not([hidden]) {
+    animation: reveal-up 240ms var(--motion-ease-out);
+  }
+  .technical-details > summary > svg {
+    transition: transform 240ms var(--motion-ease-out);
+  }
+  .technical-details[open] > .ads-architecture {
+    animation: reveal-up 320ms var(--motion-ease-out);
+  }
+
+  body,
+  .header {
+    transition:
+      background-color 240ms ease,
+      color 240ms ease,
+      border-color 240ms ease;
+  }
+  .button,
+  .icon-button,
+  .header-contact,
+  .back-to-top,
+  .music-app-picker > button,
+  .ad-format-picker > button {
+    transition:
+      transform var(--motion-duration) var(--motion-ease-out),
+      background-color var(--motion-duration) ease,
+      border-color var(--motion-duration) ease,
+      color var(--motion-duration) ease,
+      opacity var(--motion-duration) ease;
+  }
+  .text-link svg,
+  .profile-socials svg,
+  .profile-bottom img,
+  .profile-scroll svg {
+    transition: transform var(--motion-duration) var(--motion-ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .button:hover:not(:disabled),
+    .header-contact:hover,
+    .back-to-top:hover {
+      transform: translateY(-2px);
+    }
+    .text-link:hover svg,
+    .profile-socials a:hover svg:last-child {
+      transform: translate(2px, -2px);
+    }
+    .profile-actions .text-link:hover svg,
+    .profile-scroll:hover svg {
+      transform: translateY(3px);
+    }
+    .profile-bottom a:hover img {
+      transform: translateY(-3px);
+    }
+  }
+
+  .button:active:not(:disabled),
+  .icon-button:active,
+  .header-contact:active,
+  .back-to-top:active {
+    transform: scale(0.97);
+  }
+}

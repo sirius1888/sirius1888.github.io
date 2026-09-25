@@ -26,6 +26,13 @@ I use the [xAI design study](https://getdesign.md/x.ai/design-md) as a reference
 - Page controls have at least 44px touch targets. Keyboard focus is visible, and reduced-motion preferences disable smooth scrolling and animation.
 - The page supports English and Russian; labels and layouts must accommodate both without reducing body text sizes.
 
+## Motion
+
+- `src/motion.css` defines short, staggered hero entrances, once-only scroll reveals, control feedback, disclosure entrances and the return-to-top entrance. Durations and easing live in `tokens.css`.
+- `useScrollReveal` observes explicit `data-reveal` regions inside the main content. It skips regions already visible on mount and stops observing each region after its first entrance. It disconnects on cleanup, including React Strict Mode's development cycle.
+- Resting content is always visible: JavaScript and IntersectionObserver are enhancements, not prerequisites for reading. Keyboard focus completes scroll entrances immediately, and `prefers-reduced-motion` disables decorative movement, including animations already running.
+- The scroll arrow gives two gentle cues, then stops. Hover movement is limited to devices with a fine pointer. Animations do not change document layout or gate any action.
+
 ## Design skills
 
 Guidance from [Owl-Listener/designer-skills](https://github.com/Owl-Listener/designer-skills):

@@ -8,7 +8,12 @@ import { Link, SectionMeta } from '../../ui-kit';
 export function ContactSection({ lang }: { lang: Language }) {
   const t = localize(lang);
   return (
-    <section className="contact-section wrap" id="contact" aria-labelledby="contact-title">
+    <section
+      className="contact-section wrap"
+      id="contact"
+      aria-labelledby="contact-title"
+      data-reveal
+    >
       <SectionMeta
         className="contact-top"
         index="05"

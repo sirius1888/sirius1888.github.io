@@ -33,7 +33,7 @@ export function MuseSection({ lang }: { lang: Language }) {
         subtitle="React Native Developer"
         detail={t('Advertising Department', 'Рекламный департамент')}
       />
-      <div className="muse-intro">
+      <div className="muse-intro" data-reveal>
         <div>
           <span className="case-kicker">{t('MY RESPONSIBILITIES', 'МОИ ЗАДАЧИ')}</span>
           <h3>
@@ -72,7 +72,7 @@ export function MuseSection({ lang }: { lang: Language }) {
           ))}
         </ul>
       </div>
-      <div className="muse-outcome">
+      <div className="muse-outcome" data-reveal>
         <span className="case-kicker">{t('VALUE FOR THE TEAM', 'РЕЗУЛЬТАТ ДЛЯ КОМАНДЫ')}</span>
         <p>
           {t(
