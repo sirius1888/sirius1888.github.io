@@ -8,10 +8,14 @@ import { SkillIcon } from './SkillIcon';
 export function SkillsPanel({ lang }: { lang: Language }) {
   const t = localize(lang);
   return (
-    <div className="profile-stack" id="toolkit">
+    <section
+      className="skills-section profile-stack wrap"
+      id="toolkit"
+      aria-labelledby="skills-title"
+    >
       <SectionMeta
         className="stack-heading"
-        index="01"
+        index="03"
         label={t('SKILLS', 'НАВЫКИ')}
         aside={
           <span className="stack-platforms">
@@ -19,7 +23,7 @@ export function SkillsPanel({ lang }: { lang: Language }) {
           </span>
         }
       />
-      <h2>{t('Technologies I work with', 'Технологии, с которыми работаю')}</h2>
+      <h2 id="skills-title">{t('Technologies I work with', 'Технологии, с которыми работаю')}</h2>
       <div className="all-skills">
         {skillGroups.map((group) => (
           <section
@@ -59,6 +63,6 @@ export function SkillsPanel({ lang }: { lang: Language }) {
           <span>{t('native & cross-platform', 'нативно и кроссплатформенно')}</span>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

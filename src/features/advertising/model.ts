@@ -12,7 +12,7 @@ export const initialAdConfig: AdConfig = {
   adapter: 'A',
   analytics: true,
   experiments: false,
-  consent: false,
+  consent: true,
 };
 export const musicApps = {
   ug: {

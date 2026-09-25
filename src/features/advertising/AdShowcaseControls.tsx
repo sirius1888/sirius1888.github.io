@@ -5,14 +5,14 @@ import { musicApps, type AdConfig, type AdFormat, type MusicApp } from './model'
 
 export type AdShowcaseControlsProps = {
   lang: Language;
-  config: Pick<AdConfig, 'sdk' | 'adapter' | 'analytics' | 'consent'>;
+  config: Pick<AdConfig, 'consent'>;
   onConsentChange: (consent: boolean) => void;
   app: MusicApp;
   format: AdFormat;
   onAppChange: (value: MusicApp) => void;
   onFormatChange: (value: AdFormat) => void;
 };
-/** Controlled product, format and consent selectors with the current configuration summary. */
+/** Plain-language product and format choices for the visual example. */
 export function AdShowcaseControls({
   lang,
   config,
@@ -44,12 +44,12 @@ export function AdShowcaseControls({
   };
   return (
     <div className="ad-showcase-copy">
-      <span className="case-kicker">ULTIMATE GUITAR + MUSESCORE</span>
-      <h3>{t('Advertising formats', 'Рекламные форматы')}</h3>
+      <span className="case-kicker">{t('SEE IT IN AN APP', 'КАК ЭТО ВЫГЛЯДИТ В ПРИЛОЖЕНИИ')}</span>
+      <h3>{t('One approach, different products', 'Общий подход — разные продукты')}</h3>
       <p>
         {t(
-          'I worked with banners, native, interstitial and rewarded ads in Ultimate Guitar and MuseScore, and optimized the screens around them.',
-          'Работал с баннерами, нативной, interstitial- и rewarded-рекламой в Ultimate Guitar и MuseScore, оптимизировал экраны с рекламными размещениями.',
+          'Choose a product and an ad format to see how advertising fits into the app. Ultimate Guitar and MuseScore are examples of products using the shared module.',
+          'Выберите продукт и формат, чтобы увидеть, как реклама встроена в приложение. Ultimate Guitar и MuseScore — примеры продуктов, в которых использовался общий модуль.',
         )}
       </p>
       <ChoiceGroup
@@ -81,10 +81,10 @@ export function AdShowcaseControls({
             value === 'banner'
               ? t('Banner', 'Баннер')
               : value === 'native'
-                ? t('Native ad', 'Нативная реклама')
+                ? t('In-feed ad', 'В ленте')
                 : value === 'interstitial'
-                  ? 'Interstitial'
-                  : 'Rewarded',
+                  ? t('Full-screen ad', 'На весь экран')
+                  : t('With a reward', 'За вознаграждение'),
         }))}
         renderOption={(option, selected, index) => (
           <>
@@ -102,27 +102,12 @@ export function AdShowcaseControls({
         pressed={config.consent}
         onPressedChange={onConsentChange}
         icon={<ShieldCheck size={18} />}
-        title={
-          config.consent
-            ? t('Demo consent granted', 'Демо-согласие получено')
-            : t('Allow demo advertising', 'Разрешить демо-рекламу')
-        }
+        title={t('Show ads in this example', 'Показывать рекламу в примере')}
         description={t(
-          'Try granting and withdrawing consent.',
-          'Попробуйте дать и отозвать согласие.',
+          'Compare the screen with and without advertising.',
+          'Сравните экран с рекламой и без неё.',
         )}
       />
-      <div className="active-ad-config">
-        <span>{config.sdk}</span>
-        <span>
-          {t('Adapter', 'Адаптер')} {config.adapter}
-        </span>
-        <span>
-          {config.analytics
-            ? t('Analytics on', 'Аналитика вкл.')
-            : t('Analytics off', 'Аналитика выкл.')}
-        </span>
-      </div>
       <Link href={appInfo.url} target="_blank" rel="noreferrer" className="text-link">
         {appInfo.name} {t('on the App Store', 'в App Store')}
         <ArrowUpRight size={14} />

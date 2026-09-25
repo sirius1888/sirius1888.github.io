@@ -8,21 +8,44 @@ import { skillGroups } from './content';
 const apps = () => screen.getByRole('group', { name: 'Select advertising app' });
 const formats = () => screen.getByRole('group', { name: 'Advertising format' });
 const sdk = () => screen.getByRole('group', { name: 'Advertising SDK' });
-const consent = () => screen.getByRole('button', { name: /Allow demo advertising/ });
+const consent = () => screen.getByRole('button', { name: /Show ads in\s+this example/ });
+const openArchitecture = (user: ReturnType<typeof userEvent.setup>) =>
+  user.click(screen.getByText('How it works technically'));
 
 describe('Portfolio v2 visitor journeys', () => {
-  it('opens with a personal profile, every skill visible, and chronological employer chapters', () => {
+  it('prioritizes the lead profile and contact, with the full stack after the main cases', () => {
     const { container } = render(<App />);
     const intro = screen.getByRole('region', { name: /Sergei.*Karukes/ });
-    expect(intro.querySelectorAll('.skill-category li')).toHaveLength(
+    expect(intro.querySelectorAll('.skill-category')).toHaveLength(0);
+    expect(within(intro).getByText('Team Lead React Native Developer')).toBeTruthy();
+    const message = within(intro).getByRole('link', { name: 'Message me' });
+    expect(message.getAttribute('href')).toBe('https://t.me/ser1888');
+    expect(message.classList.contains('button-accent')).toBe(true);
+    expect(within(intro).getByRole('link', { name: 'Download CV' }).hasAttribute('download')).toBe(
+      true,
+    );
+    const skills = screen.getByRole('region', { name: 'Technologies I work with' });
+    expect(skills.querySelectorAll('.skill-category li')).toHaveLength(
       skillGroups.flatMap((group) => group.items).length,
     );
+    const details = screen.getByText('How it works technically').closest('details')!;
+    expect(details.open).toBe(false);
+    const muse = screen.getByRole('region', { name: 'Muse Group' });
+    expect(within(muse).getByText('MY RESPONSIBILITIES')).toBeTruthy();
+    expect(
+      within(muse).getByText('Built a shared advertising module for company products.'),
+    ).toBeTruthy();
+    expect(
+      muse.querySelector('.ad-showcase')!.compareDocumentPosition(details) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
     expect(intro.querySelector('[hidden]')).toBeNull();
     expect(intro.querySelector('.iphone-shell')).toBeNull();
     expect([...container.querySelectorAll('main > section')].map((section) => section.id)).toEqual([
       'home',
       'vinteo',
       'muse-group',
+      'toolkit',
       'experience',
       'contact',
     ]);
@@ -35,6 +58,7 @@ describe('Portfolio v2 visitor journeys', () => {
   it('retains the ad configuration and call state across language and theme changes and restores preferences', async () => {
     const user = userEvent.setup();
     const view = render(<App />);
+    await openArchitecture(user);
     await user.click(within(sdk()).getByRole('button', { name: 'ironSource' }));
     await user.click(within(apps()).getByRole('button', { name: 'MuseScore' }));
     await user.click(screen.getByRole('button', { name: 'Open conference chat' }));
@@ -47,6 +71,18 @@ describe('Portfolio v2 visitor journeys', () => {
     await user.click(screen.getByRole('button', { name: /^Switch to\s+Russian$/ }));
     expect(document.documentElement.lang).toBe('ru');
     expect(document.documentElement.dataset.theme).toBe('light');
+    const introRu = screen.getByRole('region', { name: 'Сергей Карукес' });
+    const normalize = (text: string | null) => text?.replace(/\s+/g, ' ');
+    expect(normalize(introRu.querySelector('.profile-role')!.textContent)).toBe(
+      'Team Lead React Native разработчик',
+    );
+    expect(normalize(introRu.querySelector('.profile-bio p')!.textContent)).toBe(
+      'Разработчик для iOS и Android на react-native.',
+    );
+    expect(normalize(introRu.querySelector('.profile-bio p + p')!.textContent)).toBe(
+      'В Vinteo также руковожу командой и организую разработку и оперирую процессами.',
+    );
+    expect(screen.getByText('Как устроено технически').closest('details')!.open).toBe(true);
     expect(screen.getByRole('button', { name: 'ironSource' }).getAttribute('aria-pressed')).toBe(
       'true',
     );
@@ -147,6 +183,7 @@ describe('Portfolio v2 visitor journeys', () => {
   it('shares SDK and adapter configuration across both products and disconnects analytics independently', async () => {
     const user = userEvent.setup();
     render(<App />);
+    await openArchitecture(user);
     await user.click(within(sdk()).getByRole('button', { name: 'ironSource' }));
     await user.click(screen.getByRole('button', { name: 'Adapter B' }));
     expect(screen.getByRole('status', { name: 'Demo analytics events' }).textContent).toContain(
@@ -175,39 +212,40 @@ describe('Portfolio v2 visitor journeys', () => {
   it('gates banner and native placements on consent and opens/dismisses interstitials', async () => {
     const user = userEvent.setup();
     const { container } = render(<App />);
+    expect(container.querySelector('.demo-creative.compact')).not.toBeNull();
+    await user.click(consent());
     expect(container.querySelector('.demo-creative')).toBeNull();
     await user.click(consent());
     expect(container.querySelector('.demo-creative.compact')).not.toBeNull();
-    await user.click(within(formats()).getByRole('button', { name: /Native ad/ }));
+    await user.click(within(formats()).getByRole('button', { name: /In-feed ad/ }));
     expect(container.querySelector('.demo-creative:not(.compact)')).not.toBeNull();
-    await user.click(within(formats()).getByRole('button', { name: /Interstitial/ }));
-    await user.click(screen.getByRole('button', { name: 'Show interstitial' }));
+    await user.click(within(formats()).getByRole('button', { name: /Full-screen ad/ }));
+    await user.click(screen.getByRole('button', { name: 'Show full-screen ad' }));
     expect(screen.getByRole('dialog', { name: 'Interstitial advertising demo' })).toBeTruthy();
     await user.keyboard('{Escape}');
     expect(screen.queryByRole('dialog')).toBeNull();
-    await user.click(screen.getByRole('button', { name: /Demo consent granted/ }));
+    await user.click(consent());
     expect(
-      (screen.getByRole('button', { name: 'Show interstitial' }) as HTMLButtonElement).disabled,
+      (screen.getByRole('button', { name: 'Show full-screen ad' }) as HTMLButtonElement).disabled,
     ).toBe(true);
   });
   it('only gives a rewarded benefit after completion and cancels it when switching products or withdrawing consent', () => {
     vi.useFakeTimers();
     render(<App />);
-    fireEvent.click(consent());
-    fireEvent.click(within(formats()).getByRole('button', { name: /Rewarded/ }));
-    fireEvent.click(screen.getByRole('button', { name: /^Watch demo for\s+a\s+reward$/ }));
+    fireEvent.click(within(formats()).getByRole('button', { name: /With\s+a\s+reward/ }));
+    fireEvent.click(screen.getByRole('button', { name: /^Watch\s+and\s+get\s+a\s+reward$/ }));
     act(() => vi.advanceTimersByTime(2000));
     expect(screen.queryByRole('button', { name: 'Collect demo reward' })).toBeNull();
     fireEvent.click(within(apps()).getByRole('button', { name: 'MuseScore' }));
     act(() => vi.advanceTimersByTime(5000));
     expect(screen.queryByRole('dialog')).toBeNull();
     expect(screen.queryByText('Demo reward received')).toBeNull();
-    fireEvent.click(screen.getByRole('button', { name: /^Watch demo for\s+a\s+reward$/ }));
+    fireEvent.click(screen.getByRole('button', { name: /^Watch\s+and\s+get\s+a\s+reward$/ }));
     act(() => vi.advanceTimersByTime(4000));
     fireEvent.click(screen.getByRole('button', { name: 'Collect demo reward' }));
     expect(screen.getByText('Demo reward received')).toBeTruthy();
-    fireEvent.click(screen.getByRole('button', { name: /^Watch demo for\s+a\s+reward$/ }));
-    fireEvent.click(screen.getByRole('button', { name: /Demo consent granted/ }));
+    fireEvent.click(screen.getByRole('button', { name: /^Watch\s+and\s+get\s+a\s+reward$/ }));
+    fireEvent.click(consent());
     act(() => vi.advanceTimersByTime(5000));
     expect(screen.queryByRole('dialog')).toBeNull();
     expect(screen.queryByText('Demo reward received')).toBeNull();

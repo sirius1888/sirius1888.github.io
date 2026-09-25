@@ -91,7 +91,7 @@ export function MusicAppScreen({
           ) : (
             <div className="native-empty">
               <ShieldCheck size={16} />
-              {t('Ad space · awaiting consent', 'Рекламное место · ожидает согласия')}
+              {t('Advertising is off', 'Показ рекламы выключен')}
             </div>
           ))}
         <ListRow
@@ -106,8 +106,8 @@ export function MusicAppScreen({
             <Button onClick={onShowAd} disabled={!consent}>
               {format === 'rewarded' ? <Gift size={16} /> : <CirclePlay size={16} />}{' '}
               {format === 'rewarded'
-                ? t('Watch demo for a reward', 'Демо-просмотр за награду')
-                : t('Show interstitial', 'Показать interstitial')}
+                ? t('Watch and get a reward', 'Посмотреть и получить награду')
+                : t('Show full-screen ad', 'Показать рекламу на весь экран')}
             </Button>
             <small>
               {consent
@@ -116,7 +116,10 @@ export function MusicAppScreen({
                   : format === 'rewarded'
                     ? t('Optional · 4-second simulation', 'По желанию · симуляция 4 секунды')
                     : t('Tap to simulate a screen transition', 'Нажмите для имитации перехода')
-                : t('Grant demo consent to continue', 'Сначала дайте демо-согласие')}
+                : t(
+                    'Turn on advertising in the example to continue',
+                    'Сначала включите показ рекламы в примере',
+                  )}
             </small>
           </div>
         )}
@@ -130,7 +133,7 @@ export function MusicAppScreen({
               <ShieldCheck size={18} />
               <span>
                 {t('Ad placement', 'Рекламное место')}
-                <small>{t('Awaiting your consent', 'Ожидает вашего согласия')}</small>
+                <small>{t('Advertising is off', 'Показ рекламы выключен')}</small>
               </span>
             </div>
           )}

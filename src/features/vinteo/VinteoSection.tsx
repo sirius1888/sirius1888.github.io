@@ -14,7 +14,7 @@ export function VinteoSection({ lang }: { lang: Language }) {
     >
       <SectionMeta
         className="chapter-overline"
-        index="02"
+        index="01"
         label={t('CURRENT ROLE', 'ТЕКУЩАЯ РАБОТА')}
         aside={
           <span className="current-badge">

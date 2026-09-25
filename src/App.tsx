@@ -4,6 +4,7 @@ import { MuseSection } from './features/advertising/MuseSection';
 import { ContactSection } from './features/contact/ContactSection';
 import { ExperienceSection } from './features/experience/ExperienceSection';
 import { ProfileHero } from './features/profile/ProfileHero';
+import { SkillsPanel } from './features/profile/SkillsPanel';
 import { VinteoSection } from './features/vinteo/VinteoSection';
 import { usePreferences } from './hooks/usePreferences';
 
@@ -22,6 +23,7 @@ export default function App() {
         <ProfileHero lang={lang} />
         <VinteoSection lang={lang} />
         <MuseSection lang={lang} />
+        <SkillsPanel lang={lang} />
         <ExperienceSection lang={lang} />
         <ContactSection lang={lang} />
       </main>

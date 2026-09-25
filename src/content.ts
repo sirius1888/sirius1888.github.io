@@ -38,8 +38,8 @@ export const projects = {
     period: bi('2021 — 2024', '2021 — 2024'),
     title: bi('Reusable advertising module', 'Общий рекламный модуль'),
     summary: bi(
-      'I built an advertising module reused in Ultimate Guitar and MuseScore. Replaceable SDKs and adapters allowed experiments with different integrations without dependence on one vendor.',
-      'Создал рекламный модуль, переиспользуемый в Ultimate Guitar и MuseScore. Сменные SDK и адаптеры позволяли проводить эксперименты с разными интеграциями без привязки к одному вендору.',
+      'I built a shared advertising module for company products, including Ultimate Guitar and MuseScore. Replaceable integrations let the team work with different ad providers and test integration options.',
+      'Создал общий рекламный модуль для продуктов компании, в том числе Ultimate Guitar и MuseScore. Сменные интеграции позволяли подключать разных поставщиков рекламы и проверять варианты интеграции.',
     ),
     role: bi(
       'React Native Developer · Advertising Department',

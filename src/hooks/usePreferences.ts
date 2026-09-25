@@ -27,8 +27,8 @@ export function usePreferences(store: PreferenceStore = browserPreferenceStore) 
     document.documentElement.dataset.theme = theme;
     document.title =
       lang === 'en'
-        ? 'Sergei Karukes — Senior / Lead React Native Engineer'
-        : 'Сергей Карукес — Senior / Lead React Native Engineer';
+        ? 'Sergei Karukes — Team Lead React Native Developer'
+        : 'Сергей Карукес — Team Lead React Native разработчик';
     document
       .querySelector('meta[name="theme-color"]')
       ?.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#fafafa');

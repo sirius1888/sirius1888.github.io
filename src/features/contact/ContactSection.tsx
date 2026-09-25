@@ -13,7 +13,7 @@ export function ContactSection({ lang }: { lang: Language }) {
         className="contact-top"
         index="05"
         label={t('CONTACT', 'КОНТАКТЫ')}
-        aside={<span>Senior / Lead React Native</span>}
+        aside={<span>React Native · Team Lead</span>}
       />
       <h2 id="contact-title">{t('Get in touch', 'Связаться')}</h2>
       <div className="contact-bottom">

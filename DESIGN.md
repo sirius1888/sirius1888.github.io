@@ -12,7 +12,9 @@ I use the [xAI design study](https://getdesign.md/x.ai/design-md) as a reference
 - Body text is 16px, the introduction is 18px, secondary text is 14px and short labels are 12px. App simulations use their own compact type scale.
 - Spacing follows a 4px base. Sections use larger fluid spacing; panels use an 8px radius. No decorative page gradients or ambient glows.
 - Dark is the default theme. Light mode is an intentional extension of the reference.
-- Skills use a fluid two-column grid with 32px gutters and a 280px minimum column width. The core stack spans both columns; narrow containers fall back to one column. Fine rules separate the categories.
+- The first screen prioritizes the name, the Team Lead React Native Developer role and a direct contact action. A compact portrait sits beside the introduction; only four core technologies appear here. The introduction fills at least the viewport below the header, with a scroll link to Vinteo in its bottom strip; short screens can grow naturally without clipping content.
+- The full skill list follows the Vinteo and Muse cases in a two-column grid, falling back to one column on narrow screens. Fine rules separate the categories.
+- Muse presents personal responsibilities and team value before the visual ad example. The SDK/adapter diagram is collapsed under a native details disclosure. Ultimate Guitar and MuseScore are examples of company products, not the scope limit of the shared module.
 - Skill icons are monochrome in both themes. Single-colour marks share a neutral tone; multitone marks retain enough contrast to keep their internal details visible.
 - Short prepositions, articles and conjunctions stay with the following word in English and Russian. The same text formatting runs during prerendering and in the browser.
 
@@ -20,7 +22,7 @@ I use the [xAI design study](https://getdesign.md/x.ai/design-md) as a reference
 
 - External links may use an up-right arrow. Local scenario controls use play/check icons, selected states and `aria-pressed`.
 - Selecting a conference scenario on a narrow screen reveals and focuses the demo region. It never focuses the chat input automatically.
-- A fixed, labelled link returns to the profile from any section.
+- A fixed, labelled link returns to the profile after scrolling down by at least one viewport height. It is hidden on the first screen and updates when the viewport is resized.
 - Page controls have at least 44px touch targets. Keyboard focus is visible, and reduced-motion preferences disable smooth scrolling and animation.
 - The page supports English and Russian; labels and layouts must accommodate both without reducing body text sizes.
 

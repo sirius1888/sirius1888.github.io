@@ -21,6 +21,7 @@ export function SiteHeader({ lang, theme, onToggleLanguage, onToggleTheme }: Sit
     ['home', t('About', 'Обо мне')],
     ['vinteo', 'Vinteo'],
     ['muse-group', 'Muse Group'],
+    ['toolkit', t('Skills', 'Навыки')],
     ['experience', t('Earlier work', 'Ранний опыт')],
   ];
   return (
